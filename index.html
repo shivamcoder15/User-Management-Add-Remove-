@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="description"
+    content="A responsive user management practice application built with HTML, CSS, JavaScript and Tailwind CSS."
+>
+
+<title>User Management | JavaScript Practice</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+
+</head>
+
+<body class="min-h-screen bg-slate-100">
+
+<!-- Background -->
+<div class="fixed inset-0 -z-10">
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-50/95 via-white/90 to-purple-100/95"></div>
+
+    <div
+        class="absolute inset-0 bg-cover bg-center opacity-20"
+        style="background-image: url('https://images.unsplash.com/photo-1557682250-33bd709cbe85?auto=format&fit=crop&w=2000&q=80');">
+    </div>
+</div>
+
+
+<!-- Main Content -->
+<main class="min-h-screen px-4 py-8 sm:px-6 lg:px-8">
+
+    <!-- Page Header -->
+    <header class="mx-auto mb-8 max-w-6xl text-center">
+
+        <span
+            class="inline-block rounded-full bg-blue-100 px-4 py-1 text-sm font-semibold text-blue-700">
+            JavaScript Practice
+        </span>
+
+        <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-gray-800 sm:text-4xl lg:text-5xl">
+            User Management
+        </h1>
+
+        <p class="mx-auto mt-3 max-w-xl text-sm leading-6 text-gray-500 sm:text-base">
+            Create and manage user profiles using JavaScript and Local Storage.
+        </p>
+
+    </header>
+
+
+    <!-- Add User Form -->
+    <section
+        class="mx-auto mb-12 w-full max-w-xl rounded-3xl border border-white/70 bg-white/80 p-5 shadow-2xl backdrop-blur-xl sm:p-8">
+
+        <div class="mb-7">
+
+            <h2 class="text-2xl font-bold text-gray-800">
+                Add New User
+            </h2>
+
+            <p class="mt-1 text-sm text-gray-500">
+                Enter the user's details below.
+            </p>
+
+        </div>
+
+
+        <form
+            id="userForm"
+            autocomplete="off"
+            class="space-y-5"
+        >
+
+            <!-- Name -->
+            <div>
+                <label
+                    for="name"
+                    class="mb-2 block text-sm font-semibold text-gray-700">
+                    Name
+                </label>
+
+                <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Enter user name"
+                    maxlength="40"
+                    autocomplete="name"
+                    required
+                    class="form-input"
+                >
+            </div>
+
+
+            <!-- Role -->
+            <div>
+                <label
+                    for="role"
+                    class="mb-2 block text-sm font-semibold text-gray-700">
+                    Role
+                </label>
+
+                <input
+                    id="role"
+                    name="role"
+                    type="text"
+                    placeholder="e.g. MERN Stack Developer"
+                    maxlength="50"
+                    required
+                    class="form-input"
+                >
+            </div>
+
+
+            <!-- Bio -->
+            <div>
+                <label
+                    for="bio"
+                    class="mb-2 block text-sm font-semibold text-gray-700">
+                    Bio
+                </label>
+
+                <textarea
+                    id="bio"
+                    name="bio"
+                    rows="3"
+                    maxlength="150"
+                    placeholder="Write a short bio..."
+                    required
+                    class="form-input resize-none"
+                ></textarea>
+            </div>
+
+
+            <!-- Photo -->
+            <div>
+                <label
+                    for="photo"
+                    class="mb-2 block text-sm font-semibold text-gray-700">
+                    Photo URL
+                </label>
+
+                <input
+                    id="photo"
+                    name="photo"
+                    type="url"
+                    placeholder="https://example.com/photo.jpg"
+                    class="form-input"
+                >
+
+                <p class="mt-1 text-xs text-gray-400">
+                    Optional — a default image will be used if empty.
+                </p>
+            </div>
+
+
+            <!-- Submit Button -->
+            <button
+                type="submit"
+                class="w-full rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-3.5 font-semibold text-white shadow-lg shadow-blue-200 transition duration-200 hover:-translate-y-0.5 hover:from-blue-700 hover:to-purple-700 hover:shadow-xl active:translate-y-0"
+            >
+                + Add User
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Users Section -->
+    <section class="mx-auto max-w-6xl">
+
+        <!-- Section Header -->
+        <div class="mb-6 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800">
+                    User Profiles
+                </h2>
+
+                <p class="text-sm text-gray-500">
+                    Manage your saved users
+                </p>
+            </div>
+
+            <span
+                id="userCount"
+                class="w-fit rounded-full bg-white px-4 py-2 text-sm font-semibold text-gray-600 shadow-sm"
+            >
+                0 Users
+            </span>
+
+        </div>
+
+
+        <!-- User Cards -->
+        <div
+            id="users"
+            class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+            aria-live="polite"
+        >
+            <!-- Cards generated by JavaScript -->
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- Shared Input Styles -->
+<style>
+    .form-input {
+        width: 100%;
+        border-radius: 0.75rem;
+        border: 1px solid rgb(191 219 254);
+        background: rgb(255 255 255 / 0.8);
+        padding: 0.75rem 1rem;
+        color: rgb(31 41 55);
+        outline: none;
+        transition: 0.2s ease;
+    }
+
+    .form-input::placeholder {
+        color: rgb(156 163 175);
+    }
+
+    .form-input:focus {
+        border-color: transparent;
+        background: white;
+        box-shadow: 0 0 0 3px rgb(147 197 253 / 0.45);
+    }
+</style>
+
+
+<!-- JavaScript -->
+<script src="script.js"></script>
+
+</body>
+
+</html>
